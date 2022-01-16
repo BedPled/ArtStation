@@ -9,7 +9,7 @@ setTimeout(() => {
         columnWidth: 200,
         gutter: 10,
     });
-}, 100)
+}, 500)
 
 
 function createDiv(){

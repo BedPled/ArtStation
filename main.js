@@ -1,10 +1,22 @@
 let arrayOfPhoto = [];
 
 let status = start();
+
 document.addEventListener('readystatechange', () => {
-    console.log("EL ")
-    loadMasonry();
-});
+
+    setTimeout(() => {
+        var elem = document.querySelector('.grid');
+        var msnry = new Masonry( elem, {
+            itemSelector: '.grid-item',
+            columnWidth: 200,
+            gutter: 10,
+        });
+    }, 500)
+    console.log(document.readyState)
+    }
+
+);
+
 
 
 function createDiv(){
@@ -57,23 +69,11 @@ async function start() {
         }
         xhr.send();
     })
-        promise.then(xhr => {
+        .then(xhr => {
             createPhotos(xhr.response)
         })
-
-        promise.catch(xhr => {
+        .catch(xhr => {
             console.log("Errors: " + xhr.statusText);
         })
 }
-
-function loadMasonry() {
-        let elem = document.querySelector('.grid');
-        let msnry = new Masonry( elem, {
-            itemSelector: '.grid-item',
-            columnWidth: 200,
-            gutter: 10,
-        });
-}
-
-
 

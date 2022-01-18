@@ -2,16 +2,6 @@ let arrayOfPhoto = [];
 
 let status = start();
 
-setTimeout(() => {
-    var elem = document.querySelector('.grid');
-    var msnry = new Masonry( elem, {
-        itemSelector: '.grid-item',
-        columnWidth: 200,
-        gutter: 10,
-    });
-}, 500)
-
-
 function createDiv(){
     let div = document.createElement("div");
     div.setAttribute("class", "grid-item");
@@ -62,11 +52,24 @@ async function start() {
         }
         xhr.send();
     })
-        .then(xhr => {
+        promise.then(xhr => {
             createPhotos(xhr.response)
         })
-        .catch(xhr => {
+        promise.then(() => {
+            setTimeout(() => {
+                let elem = document.querySelector('.grid');
+                let msnry = new Masonry( elem, {
+                    itemSelector: '.grid-item',
+                    columnWidth: 200,
+                    gutter: 10,
+                }).initialize();
+            }, 500)
+        })
+        promise.catch(xhr => {
             console.log("Errors: " + xhr.statusText);
+        })
+        promise.then(() => {
+            msnry.update();
         })
 }
 

@@ -9,7 +9,7 @@ setTimeout(() => {
         columnWidth: 200,
         gutter: 10,
     });
-}, 100)
+}, 1000)
 
 
 function createDiv(){
@@ -62,6 +62,7 @@ async function start() {
         }
         xhr.send();
     })
+
         .then(xhr => {
             createPhotos(xhr.response)
         })

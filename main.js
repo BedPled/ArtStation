@@ -1,6 +1,10 @@
 let arrayOfPhoto = [];
 
 let status = start();
+window.addEventListener("load", () => {
+    loadMasonry();
+});
+
 
 function createDiv(){
     let div = document.createElement("div");
@@ -54,12 +58,6 @@ async function start() {
     })
         promise.then(xhr => {
             createPhotos(xhr.response)
-        })
-
-        promise.then(() => {
-            window.addEventListener("load", () => {
-                loadMasonry();
-            });
         })
 
         promise.catch(xhr => {

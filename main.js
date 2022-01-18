@@ -1,7 +1,8 @@
 let arrayOfPhoto = [];
 
 let status = start();
-window.addEventListener("load", () => {
+document.addEventListener('readystatechange', () => {
+    console.log("EL ")
     loadMasonry();
 });
 

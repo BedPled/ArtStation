@@ -55,22 +55,25 @@ async function start() {
         promise.then(xhr => {
             createPhotos(xhr.response)
         })
+
         promise.then(() => {
-            setTimeout(() => {
-                let elem = document.querySelector('.grid');
-                let msnry = new Masonry( elem, {
-                    itemSelector: '.grid-item',
-                    columnWidth: 200,
-                    gutter: 10,
-                }).initialize();
-            }, 500)
+            window.addEventListener("load", () => {
+                loadMasonry();
+            });
         })
+
         promise.catch(xhr => {
             console.log("Errors: " + xhr.statusText);
         })
-        promise.then(() => {
-            msnry.update();
-        })
+}
+
+function loadMasonry() {
+        let elem = document.querySelector('.grid');
+        let msnry = new Masonry( elem, {
+            itemSelector: '.grid-item',
+            columnWidth: 200,
+            gutter: 10,
+        });
 }
 
 
